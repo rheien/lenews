@@ -1,15 +1,34 @@
-div1{
-    display: inline-block;
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    /* further article to wrap */
+    flex-wrap: wrap;
 }
 
-ul{
-    list-style: none;
-    padding: 0px;
-    margin: 0px;
+.para{
+    display: flex;
+    justify-content: space-around;
 }
 
-.box {
+.item{
+    display: flex;
+    flex:none;
+}
+
+.box1 {
     border: 1px solid green;
+    margin: 70px auto;
+    padding: 50px;
+    
+}
+
+.box2 {
+    border: 1px solid green;
+    margin: 70px auto;
+    padding: 100px;
+    
 }
 
 .center{
@@ -18,8 +37,8 @@ ul{
 
 .left{
     
-    width: 100px;
-    height: 50px;
+    width: 600px;
+    height: 20px;
     padding: 5px;
     margin: 0px;
     border: 0px;    
@@ -27,8 +46,8 @@ ul{
 
 .right{
     width: 500px;
-    height: 50px;
-    padding: 40px;
+    height: 10px;
+    padding: 30px;
     margin: 1px;
     border: 0px;
 }
@@ -37,3 +56,7 @@ div{
     display: inline-block;
 }
 
+.nextarticle{
+    width: 1300px;
+    float: left;
+}
