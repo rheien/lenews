@@ -9,24 +9,19 @@ div.container{
 
 div.para{
     display: flex;
-    justify-content: space-around;
-}
-
-.item{
-    display: flex;
-    flex:none;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 div.box1 {
     border: 1px solid #68C37E;
     margin: 70px auto;
     padding: 50px;
-    
 }
 
 div.box2 {
     border: 1px solid #68C37E;
-    margin: 70px;
+    margin: 80px;
     padding: 50px;
     width: 250px;
 }
@@ -36,7 +31,6 @@ div.box2 {
 }
 
 *.left{
-    
     width: 600px;
     height: 20px;
     padding: 5px;
@@ -65,7 +59,7 @@ div{
 }
 
 .nextarticle{
-    width: 1300px;
+    width: 1500px auto;
     float: left;
 }
 
