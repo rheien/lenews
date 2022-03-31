@@ -1,52 +1,49 @@
-div.container1{
+div{
+    display: inline-block;
+    color: #66A060;
+}
+
+a{
+    color: #66A060;
+}
+
+button{
+    color: white;
+}
+
+.q{
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    padding: 0px;
+    margin: 2px;
+}
+
+.container1{
     display:flex;
     flex-flow: row wrap;
     flex-direction: column;
     justify-content: space-around;
 }
 
-div.container2{
+.container2{
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     flex-flow: row wrap;
-    flex-wrap: wrap;
 }
 
-div.box1 {
-    border: 1px solid #68C37E;
-    margin: 70px auto;
-    padding: 50px;
+.container2--next-article{
+    width: 1500px auto;
 }
 
-div.box2 {
+.container2__box2 {
     border: 1px solid #68C37E;
     margin: 80px;
     padding: 50px;
     width: 250px;
 }
 
-*.center{
-    text-align: center;
-}
-
-*.left{
-    width: 600px;
-    height: 20px;
-    padding: 5px;
-    margin: 0px;
-    border: 0px;    
-}
-
-*.mainright{
-    width: 250px;
-    height: 10px;
-    padding: 30px;
-    margin: 1px;
-    border: 0px;
-}
-
-*.secondright{
+.container2__box2--second-right{
     width: 250px auto;
     height: 10px auto;
     padding: 30px auto;
@@ -54,26 +51,53 @@ div.box2 {
     border: 0px;
 }
 
-div{
-    display: inline-block;
+.container2__box2--teaser{
+    color:#B8B2B2;
 }
 
-.nextarticle{
-    width: 1500px auto;
-    float: left;
+.box1 {
+    border: 1px solid #68C37E;
+    margin: 70px auto;
+    padding: 50px;
 }
 
-p, div, a{
-    color: #66A060;
+.box1--left{
+    width: 600px;
+    height: 20px;
+    padding: 5px;
+    margin: 0px;
+    border: 0px;    
 }
 
-.teaser, .info{
+.box1__main-right{
+    width: 250px;
+    height: 10px;
+    padding: 30px;
+    margin: 1px;
+    border: 0px;
+}
+
+.box1--info{
     color:#B2B2B2;
 }
 
-.q{
-    width: 10px;
-    height: 10px;
-    padding: 0px;
-    margin: 2px;
+.box1--teaser{
+    color:#B8B2B2;
+}
+
+@media all and (max-width: 800px) {
+    .container1{
+        flex:2 100%;
+        max-width: 600px;
+    }
+    .container2{
+        flex: 100%;
+        order:2;
+        max-width: 600px;
+    }
+    .box1{
+        flex: 100%;
+        order:1;
+        max-width: 400px;
+    }
 }
