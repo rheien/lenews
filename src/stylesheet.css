@@ -1,13 +1,12 @@
-div{
+.div__inline-block{
     display: inline-block;
+}
+
+.color--green{
     color: #66A060;
 }
 
-a{
-    color: #66A060;
-}
-
-button{
+.button--white{
     color: white;
 }
 
