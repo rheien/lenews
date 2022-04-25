@@ -6,43 +6,15 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta charset="UTF-8"/>
     <meta name="author" content="Ryan Le">
-    <meta name="description" content="A little project to learn HTML, CSS and co.">
+    <meta name="description" content="Le News, Azubi Project, Front-End, Back-End">
     <link rel="stylesheet" href="stylesheet.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-    <script>
-        $(document).ready(function(){
-            $("button").click(function(){
-
-                $.ajax("https://www.welt.de/feeds/latest.rss", {
-                    crossDomain: true,
-                    success : function(data){
-                    alert("alter"); },
-
-                    mimeType: "application/rss+xml"
-
-                });
-
-          /*  $.get("https://www.welt.de/feeds/latest.rss", function(data){
-
-                    let xml = $.parseXML(data);
-                    $xmlDoc = $( xml );
-                    $(".title") = $xmlDoc.find( "title" );
-
-                    alert("alter");
-                }, 'xml');
-*/
-            });
-
-
-        });
-
-    </script>
+    <script src="feed_rss.js"></script>
 </head>
 
 <body>
-<button class="title">bla</button>
 <div class="container1">
     <div class="header">
         <div class="header__logo div__inline-block">
