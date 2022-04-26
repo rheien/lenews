@@ -43,10 +43,6 @@
     margin: 1px;
 }
 
-.box1--color-grey{
-    color:#B2B2B2;
-}
-
 .container2{
     display: flex;
     justify-content: space-evenly;
@@ -66,6 +62,9 @@
     height: 10px auto;
     padding: 30px auto;
     margin: 1px;
+}
+
+.color--grey{
     color:#B8B2B2;
 }
 

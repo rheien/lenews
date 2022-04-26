@@ -18,7 +18,7 @@ $(document).ready(function(){
                 let description = $(this).find('description').text();
                 let category = $(this).find('category').text();
                 let date = $(this).find('pubDate').text().slice(0,22);
-                //console.log(date);
+
                 article.push([title,link,description,category,date]);
             });
 
@@ -27,9 +27,9 @@ $(document).ready(function(){
                 '<h1 class="box1--position-left">'+
                 '<a class="color--green" target="_self" href='+item[1]+'>'+item[0]+'</a>'+
                 '</h1>'+
-                '<div class="box1--position-left box1--color-grey div__inline-block">'+item[4]+'<br> '+item[3]+
+                '<div class="box1--position-left div__inline-block color--grey">'+item[4]+'<br> Kategorie: '+item[3]+
                 '</div>'+
-                '<div class="box1--position-right box1--color-grey div__inline-block">'+
+                '<div class="box1--position-right div__inline-block color--grey">'+
                 item[2]+ 
                 '</div>'
             );
@@ -42,8 +42,9 @@ $(document).ready(function(){
                     element[0]+
                     '</a>'+
                     '</h2>'+
-                    '<br>'+
-                    '<div class="container2__box2__teaser">'+
+                    '<div class="color--grey" >'+element[4]+'<br> Kategorie: '+element[3]+
+                    '<br>'+'<br>'+
+                    '<div class="container2__box2__teaser color--grey">'+
                     element[2]+
                     '</div>'+
                     '</div>'
