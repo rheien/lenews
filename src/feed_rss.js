@@ -8,8 +8,7 @@ $(document).ready(function(){
             console.log("XML Datei nicht abrufbar", err);
         },
         success : function(data){
-            $('.box1').children().remove();
-            $('.container2').children().remove();
+            //$('.container2').children().remove();
             let article = [];
             $(data).find("item").each(function(){
 
@@ -22,19 +21,36 @@ $(document).ready(function(){
                 article.push([title,link,description,category,date]);
             });
 
-            let item = article.shift();
-            $('.box1').append(
-                '<h1 class="box1--position-left">'+
-                '<a class="color--green" target="_self" href='+item[1]+'>'+item[0]+'</a>'+
-                '</h1>'+
-                '<div class="box1--position-left div__inline-block color--grey">'+item[4]+'<br> Kategorie: '+item[3]+
-                '</div>'+
-                '<div class="box1--position-right div__inline-block color--grey">'+
-                item[2]+ 
-                '</div>'
-            );
+            let item2 = article;
+            let item = item2.shift();
+            document.getElementsByTagName("a")[0].innerHTML=item[0];
+            document.getElementsByTagName("a")[0].setAttribute('href',item[1]);
+            document.getElementsByTagName("div")[5].innerHTML=item[4] + '<br>' +item[3];
+            document.getElementsByTagName("div")[6].innerHTML=item[2];
 
-            article.forEach(element => {
+            //console.log(document.getElementsByTagName("div"));
+            const sub_article = document.getElementsByClassName("container2");
+            /*console.log(sub_article[0])
+            console.log(sub_article[0].getElementsByTagName("a"))
+            
+            console.log(sub_article[0].getElementsByClassName("container2__box2__teaser"))
+            */
+            let i=0;
+            let bla;
+            item2.forEach(element => {
+
+                sub_article[0].getElementsByTagName("a")[i%2].innerHTML=element[0];
+                sub_article[0].getElementsByTagName("a")[i%2].setAttribute('href',element[1]);
+                sub_article[0].getElementsByClassName("container2__box2__teaser")[i%2].innerHTML=element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
+                
+                if (i%2==1) {
+                    console.log(sub_article[0]);
+                    $('.container2').append(sub_article[0]);
+                i++; 
+                  
+            });
+            /*
+            item2.forEach(element =>{
                 $('.container2').append(
                     '<div class="container2__box2">'+
                     '<h2>'+
@@ -49,7 +65,7 @@ $(document).ready(function(){
                     '</div>'+
                     '</div>'
                 );
-            });
+            });*/
         },
     });
 });
