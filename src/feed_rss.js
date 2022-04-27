@@ -28,27 +28,19 @@ $(document).ready(function(){
             document.getElementsByTagName("div")[5].innerHTML=item[4] + '<br>' +item[3];
             document.getElementsByTagName("div")[6].innerHTML=item[2];
 
-            //console.log(document.getElementsByTagName("div"));
-            const sub_article = document.getElementsByClassName("container2");
-            /*console.log(sub_article[0])
-            console.log(sub_article[0].getElementsByTagName("a"))
+            let sub_article = document.getElementsByClassName("container2__box2");
             
-            console.log(sub_article[0].getElementsByClassName("container2__box2__teaser"))
-            */
-            let i=0;
-            let bla;
             item2.forEach(element => {
 
-                sub_article[0].getElementsByTagName("a")[i%2].innerHTML=element[0];
-                sub_article[0].getElementsByTagName("a")[i%2].setAttribute('href',element[1]);
-                sub_article[0].getElementsByClassName("container2__box2__teaser")[i%2].innerHTML=element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
+                sub_article[0].getElementsByTagName("a")[0].innerHTML=element[0];
+                sub_article[0].getElementsByTagName("a")[0].setAttribute('href',element[1]);
+                sub_article[0].getElementsByClassName("container2__box2__teaser")[0].innerHTML=element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
                 
-                if (i%2==1) {
-                    console.log(sub_article[0]);
-                    $('.container2').append(sub_article[0]);
-                i++; 
-                  
-            });
+                
+                $('.container2').append(sub_article[0]);
+            });  
+            
+                
             /*
             item2.forEach(element =>{
                 $('.container2').append(
