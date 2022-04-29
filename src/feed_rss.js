@@ -8,7 +8,6 @@ $(document).ready(function(){
             console.log("XML Datei nicht abrufbar", err);
         },
         success : function(data){
-            //$('.container2').children().remove();
             let articles = [];
 
             $(data).find("item").each(function(){
@@ -20,7 +19,8 @@ $(document).ready(function(){
                 let date = $(this).find('pubDate').text().slice(0,22);
 
                 articles.push([title,link,description,category,date]);
-                
+                //console.log(articles.sort(articles['date']));
+                //console.log(articles)
             });
 
             let node_first_article= document.body.firstElementChild;
@@ -49,9 +49,6 @@ $(document).ready(function(){
             newDivision.innerHTML = first_article[2];
             node_first_article.childNodes[3].appendChild(newDivision);
 
-
-            console.log(node_first_article.childNodes[5])
-
             let sub_article = node_first_article.childNodes[5];
             articles.forEach((element,index ) => {
                 if(index==0){return }
@@ -59,8 +56,7 @@ $(document).ready(function(){
                 newDivision = document.createElement('div');
                 newDivision.className = 'container2__box2';
                 sub_article.appendChild(newDivision);
-                console.log(index)
-                console.log(sub_article.childNodes[index+2])
+
 
                 newHeading2 = document.createElement('h2');
                 newAttribute = document.createElement('a');
@@ -72,38 +68,11 @@ $(document).ready(function(){
 
                 sub_article.childNodes[index+2].appendChild(newHeading2);
 
-                /*
-                sub_article[0].getElementsByTagName("a")[0].innerHTML=element[0];
-                sub_article[0].getElementsByTagName("a")[0].setAttribute('href',element[1]);
-                sub_article[0].getElementsByClassName("container2__box2__teaser")[0].innerHTML=element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
-                */
-                /*console.log(Object.entries( sub_article))
-                console.log(Object.values( sub_article))
-
-                console.log(Object.entries( sub_article))
-                
-                $('.container2').append(sub_article[0]);*/
+                newDivision = document.createElement('div');
+                newDivision.className = 'container__box2__teaser color--grey';
+                newDivision.innerHTML = element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
+                sub_article.childNodes[index+2].appendChild(newDivision);
             }); 
-            
-                
-            /*
-            item2.forEach(element =>{
-                $('.container2').append(
-                    '<div class="container2__box2">'+
-                   s="color--green" target="_self" href="'+element[1]+'">'+
-                    element[0]+
-                    '</a>'+ '<h2>'+
-                    '<a clas
-                    '</h2>'+
-                    '<div class="color--grey" >'+element[4]+'<br> Kategorie: '+element[3]+
-                    '<br>'+'<br>'+
-                    '<div class="container2__box2__teaser color--grey">'+
-                    element[2]+
-                    '</div>'+
-                    '</div>'
-                );
-            });*/
         },
     });
-    
 });
