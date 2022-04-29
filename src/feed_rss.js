@@ -19,8 +19,7 @@ $(document).ready(function(){
                 let date = $(this).find('pubDate').text().slice(0,22);
 
                 articles.push([title,link,description,category,date]);
-                //console.log(articles.sort(articles['date']));
-                //console.log(articles)
+                
             });
 
             let node_first_article= document.body.firstElementChild;
