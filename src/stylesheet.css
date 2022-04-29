@@ -43,7 +43,7 @@
     margin: 1px;
 }
 
-.container2{
+.box2{
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;

@@ -8,8 +8,9 @@ $(document).ready(function(){
             console.log("XML Datei nicht abrufbar", err);
         },
         success : function(data){
-            let articles = [];
+            const articles = [];
 
+            /* XML parsing */ 
             $(data).find("item").each(function(){
 
                 let title = $(this).find('title').text();
@@ -18,70 +19,77 @@ $(document).ready(function(){
                 let category = $(this).find('category').text();
                 let date = $(this).find('pubDate').text().slice(0,22);
 
-                articles.push([title,link,description,category,date]);
+                articles.push({title,link,description,category,date});
                 
             });
-
+            
+            /* sorting by date */
+            console.dir(articles)
             articles.sort((a,b) => {
-                articles.forEach(article =>{
-                    articles.forEach(article2 =>{
-                        if(article[4]==article2[4]) {return}
-                            return article[4] - article2[4];
+                articles.forEach(a =>{
+                    articles.forEach(b =>{
+                        if(a[4]==b[4]) {return}
+                            return a[4] - b[4];
                     });
                 });
             });
 
-            let node_first_article= document.body.firstElementChild;
-            let newHeading1 = document.createElement('h1');
-            let newHeading2 = document.createElement('h2');
-            let newAttribute = document.createElement('a');
-            let newDivision = document.createElement('div');
-    
+            console.dir(articles)
+
+            /* rendering first article */
             let first_article = articles[0];
+            let box1 = document.getElementsByClassName('box1')[0];
+            let newArticle = document.createElement('article');
+            newArticle.className = 'box1--position-left  div__inline-block color--grey';
             
-            //console.dir(document.getElementsByClassName('box1'))
 
+            let newHeading1 = document.createElement('h1');
             newHeading1.className = 'box1--position-left';
-            newAttribute.className = 'color--green';
-            newAttribute.innerHTML = first_article[0];
-            newAttribute.setAttribute("target","_self");
-            newAttribute.setAttribute("href",first_article[1]);
-            newHeading1.appendChild(newAttribute);
 
-            node_first_article.childNodes[3].appendChild(newHeading1);
+            let newLink = document.createElement('a');
+            newLink.className = 'color--green';
+            newLink.innerHTML = first_article.title;
+            newLink.setAttribute("target","_self");
+            newLink.setAttribute("href",first_article.link);
 
-            newDivision.className = 'box1--position-left  div__inline-block color--grey';
-            newDivision.innerHTML = first_article[4] + '<br>' +first_article[3];
-            node_first_article.childNodes[3].appendChild(newDivision);
+            let newTeaser = document.createElement('p');
+            newTeaser.className = 'box1--position-right  div__inline-block color--grey';
+            newTeaser.innerHTML = first_article.description;
 
-            newDivision = document.createElement('div');
-            newDivision.className = 'box1--position-right  div__inline-block color--grey';
-            newDivision.innerHTML = first_article[2];
-            node_first_article.childNodes[3].appendChild(newDivision);
+            let newDate = document.createElement('div');
+            newDate.className = 'box1--position-left div__inline-block color--grey';
+            newDate.innerHTML = first_article.date + '<br>' +first_article.category;
 
-            let sub_articles = node_first_article.childNodes[5];
+            newHeading1.appendChild(newLink);
+            newArticle.appendChild(newHeading1);
+            newArticle.appendChild(newTeaser);
+            newArticle.appendChild(newDate);
+            box1.appendChild(newArticle);
+
+            /* rendering other articles */
+            let box2 = document.getElementsByClassName('box2')[0];
             articles.forEach((element,index ) => {
                 if(index==0){return }
 
-                newDivision = document.createElement('div');
-                newDivision.className = 'container2__box2';
-                sub_articles.appendChild(newDivision);
 
+                newArticle = document.createElement('article');
+                newArticle.className = 'container2__box2';
+                box2.appendChild(newArticle);
 
-                newHeading2 = document.createElement('h2');
-                newAttribute = document.createElement('a');
-                newAttribute.className = 'color--green';
-                newAttribute.innerHTML = element[0];
-                newAttribute.setAttribute("target","_self");
-                newAttribute.setAttribute("href",element[1]);
-                newHeading2.appendChild(newAttribute);
+                let newHeading2 = document.createElement('h2');
+                newLink = document.createElement('a');
+                newLink.className = 'color--green';
+                newLink.innerHTML = element[0];
+                newLink.setAttribute("target","_self");
+                newLink.setAttribute("href",element[1]);
+                newHeading2.appendChild(newLink);
 
-                sub_articles.childNodes[index+2].appendChild(newHeading2);
+                box2.appendChild(newHeading2);
 
-                newDivision = document.createElement('div');
-                newDivision.className = 'container__box2__teaser color--grey';
-                newDivision.innerHTML = element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
-                sub_articles.childNodes[index+2].appendChild(newDivision);
+                newArticle = document.createElement('article');
+                newArticle.className = 'container__box2__teaser color--grey';
+                newArticle.innerHTML = element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
+                box2.appendChild(newArticle);
             }); 
         },
     });
