@@ -22,6 +22,15 @@ $(document).ready(function(){
                 
             });
 
+            articles.sort((a,b) => {
+                articles.forEach(article =>{
+                    articles.forEach(article2 =>{
+                        if(article[4]==article2[4]) {return}
+                            return article[4] - article2[4];
+                    });
+                });
+            });
+
             let node_first_article= document.body.firstElementChild;
             let newHeading1 = document.createElement('h1');
             let newHeading2 = document.createElement('h2');
@@ -30,6 +39,8 @@ $(document).ready(function(){
     
             let first_article = articles[0];
             
+            //console.dir(document.getElementsByClassName('box1'))
+
             newHeading1.className = 'box1--position-left';
             newAttribute.className = 'color--green';
             newAttribute.innerHTML = first_article[0];
@@ -48,13 +59,13 @@ $(document).ready(function(){
             newDivision.innerHTML = first_article[2];
             node_first_article.childNodes[3].appendChild(newDivision);
 
-            let sub_article = node_first_article.childNodes[5];
+            let sub_articles = node_first_article.childNodes[5];
             articles.forEach((element,index ) => {
                 if(index==0){return }
 
                 newDivision = document.createElement('div');
                 newDivision.className = 'container2__box2';
-                sub_article.appendChild(newDivision);
+                sub_articles.appendChild(newDivision);
 
 
                 newHeading2 = document.createElement('h2');
@@ -65,12 +76,12 @@ $(document).ready(function(){
                 newAttribute.setAttribute("href",element[1]);
                 newHeading2.appendChild(newAttribute);
 
-                sub_article.childNodes[index+2].appendChild(newHeading2);
+                sub_articles.childNodes[index+2].appendChild(newHeading2);
 
                 newDivision = document.createElement('div');
                 newDivision.className = 'container__box2__teaser color--grey';
                 newDivision.innerHTML = element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
-                sub_article.childNodes[index+2].appendChild(newDivision);
+                sub_articles.childNodes[index+2].appendChild(newDivision);
             }); 
         },
     });
