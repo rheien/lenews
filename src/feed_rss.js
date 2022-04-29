@@ -17,24 +17,23 @@ $(document).ready(function(){
                 let link = $(this).find('link').text();
                 let description = $(this).find('description').text();
                 let category = $(this).find('category').text();
-                let date = $(this).find('pubDate').text().slice(0,22);
+                let date = $(this).find('pubDate').text();
 
                 articles.push({title,link,description,category,date});
-                
             });
             
             /* sorting by date */
-            console.dir(articles)
             articles.sort((a,b) => {
-                articles.forEach(a =>{
-                    articles.forEach(b =>{
-                        if(a[4]==b[4]) {return}
-                            return a[4] - b[4];
-                    });
-                });
-            });
-
-            console.dir(articles)
+                let date_a = new Date(a.date);
+                let date_b = new Date(b.date);
+                if (date_a < date_b) {
+                    return -1
+                }
+                else if (date_a > date_b) {
+                    return 1
+                }
+                return 0 
+            }).reverse();
 
             /* rendering first article */
             let first_article = articles[0];
