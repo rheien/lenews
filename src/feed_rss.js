@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+   /* $("input[type='text']").filter(function (){
+        return $(this).text()
+    });
+*/
+
+    
+
+
     $.ajax("https://sqrt-jokes.herokuapp.com/welt", {
         type: 'GET',
         dataType: "xml",
@@ -12,7 +20,7 @@ $(document).ready(function(){
 
             /* XML parsing */ 
             $(data).find("item").each(function(){
-
+                
                 let title = $(this).find('title').text();
                 let link = $(this).find('link').text();
                 let description = $(this).find('description').text();
@@ -20,6 +28,7 @@ $(document).ready(function(){
                 let date = $(this).find('pubDate').text();
 
                 articles.push({title,link,description,category,date});
+    
             });
             
             /* sorting by date */
@@ -78,8 +87,8 @@ $(document).ready(function(){
                 newLink.setAttribute("target","_self");
                 newLink.setAttribute("href",element.link);
 
-                newTeaser = document.createElement('teaser');
-                newTeaser.className = 'container__box2__teaser color--grey';
+                newTeaser = document.createElement('p');
+                newTeaser.className = 'container2__box2__teaser color--grey';
                 newTeaser.innerHTML = element.date + '<br>' +element.category+'<br>'+' <br>'+element.description;
                 
                 newHeading2.appendChild(newLink);
@@ -88,5 +97,22 @@ $(document).ready(function(){
                 box2.appendChild(newArticle);
             }); 
         },
+    });
+
+    //console.log(document.getElementsByTagName('input')[0])
+    $("input[type='text']").on('keypress keyup', function () {
+        let value = $(this).val().toLowerCase();
+        //console.log(value)
+        //$('.container__box2 *')
+        //console.log(document.getElementsByClassName("box2"))
+        //console.log($('.container1 div.box2'))
+        $(".box2 *").filter(function(){
+            console.log($(this))
+            $(this).toogle($(this).text().toLowerCase().indexOf(value) > -1)
+            
+        });
+        /*$('.container__box2 p').filter(function(){
+            $(this).toogle($(this).text().toLowerCase().indexOf(value) > -1)
+        });*/
     });
 });
