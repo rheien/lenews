@@ -39,9 +39,7 @@ $(document).ready(function(){
             let first_article = articles[0];
             let box1 = document.getElementsByClassName('box1')[0];
             let newArticle = document.createElement('article');
-            newArticle.className = 'box1--position-left  div__inline-block color--grey';
             
-
             let newHeading1 = document.createElement('h1');
             newHeading1.className = 'box1--position-left';
 
@@ -61,8 +59,8 @@ $(document).ready(function(){
 
             newHeading1.appendChild(newLink);
             newArticle.appendChild(newHeading1);
-            newArticle.appendChild(newTeaser);
             newArticle.appendChild(newDate);
+            newArticle.appendChild(newTeaser);
             box1.appendChild(newArticle);
 
             /* rendering other articles */
@@ -70,24 +68,23 @@ $(document).ready(function(){
             articles.forEach((element,index ) => {
                 if(index==0){return }
 
-
                 newArticle = document.createElement('article');
                 newArticle.className = 'container2__box2';
-                box2.appendChild(newArticle);
 
                 let newHeading2 = document.createElement('h2');
                 newLink = document.createElement('a');
                 newLink.className = 'color--green';
-                newLink.innerHTML = element[0];
+                newLink.innerHTML = element.title;
                 newLink.setAttribute("target","_self");
-                newLink.setAttribute("href",element[1]);
+                newLink.setAttribute("href",element.link);
+
+                newTeaser = document.createElement('teaser');
+                newTeaser.className = 'container__box2__teaser color--grey';
+                newTeaser.innerHTML = element.date + '<br>' +element.category+'<br>'+' <br>'+element.description;
+                
                 newHeading2.appendChild(newLink);
-
-                box2.appendChild(newHeading2);
-
-                newArticle = document.createElement('article');
-                newArticle.className = 'container__box2__teaser color--grey';
-                newArticle.innerHTML = element[4] + '<br>' +element[3]+'<br>'+' <br>'+element[2];
+                newArticle.appendChild(newHeading2);
+                newArticle.appendChild(newTeaser)
                 box2.appendChild(newArticle);
             }); 
         },
