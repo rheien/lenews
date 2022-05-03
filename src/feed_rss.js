@@ -1,13 +1,5 @@
 $(document).ready(function(){
 
-   /* $("input[type='text']").filter(function (){
-        return $(this).text()
-    });
-*/
-
-    
-
-
     $.ajax("https://sqrt-jokes.herokuapp.com/welt", {
         type: 'GET',
         dataType: "xml",
@@ -23,11 +15,11 @@ $(document).ready(function(){
                 
                 let title = $(this).find('title').text();
                 let link = $(this).find('link').text();
-                let description = $(this).find('description').text();
+                let teaser = $(this).find('description').text();
                 let category = $(this).find('category').text();
                 let date = $(this).find('pubDate').text();
 
-                articles.push({title,link,description,category,date});
+                articles.push({title,link,teaser,category,date});
     
             });
             
@@ -54,18 +46,23 @@ $(document).ready(function(){
 
             let newLink = document.createElement('a');
             newLink.className = 'color--green';
-            newLink.innerHTML = first_article.title;
+            newLink.textContent = first_article.title;
             newLink.setAttribute("target","_self");
             newLink.setAttribute("href",first_article.link);
 
             let newTeaser = document.createElement('p');
             newTeaser.className = 'box1--position-right  div__inline-block color--grey';
-            newTeaser.innerHTML = first_article.description;
+            newTeaser.textContent = first_article.teaser;
 
-            let newDate = document.createElement('div');
+            let newDate = document.createElement('p');
             newDate.className = 'box1--position-left div__inline-block color--grey';
-            newDate.innerHTML = first_article.date + '<br>' +first_article.category;
+            newDate.textContent = first_article.date;
 
+            let lineBreak = document.createElement('span')
+            lineBreak.className= 'line_break';
+            newDate.append(lineBreak);
+            newDate.append(first_article.category);
+            
             newHeading1.appendChild(newLink);
             newArticle.appendChild(newHeading1);
             newArticle.appendChild(newDate);
@@ -80,39 +77,42 @@ $(document).ready(function(){
                 newArticle = document.createElement('article');
                 newArticle.className = 'container2__box2';
 
-                let newHeading2 = document.createElement('h2');
                 newLink = document.createElement('a');
                 newLink.className = 'color--green';
-                newLink.innerHTML = element.title;
+                newLink.textContent = element.title;
                 newLink.setAttribute("target","_self");
                 newLink.setAttribute("href",element.link);
 
+                newDate = document.createElement('p');
+                newDate.className = 'container2__box2__teaser color--grey';
+                newDate.textContent = element.date;
+                lineBreak = document.createElement('span')
+                lineBreak.className= 'line_break';
+                newDate.append(lineBreak);
+                newDate.append(element.category);
+
                 newTeaser = document.createElement('p');
                 newTeaser.className = 'container2__box2__teaser color--grey';
-                newTeaser.innerHTML = element.date + '<br>' +element.category+'<br>'+' <br>'+element.description;
-                
+                newTeaser.innerHTML = element.teaser;
+
+                let newHeading2 = document.createElement('h2');
+
                 newHeading2.appendChild(newLink);
                 newArticle.appendChild(newHeading2);
-                newArticle.appendChild(newTeaser)
+                newArticle.appendChild(newDate);
+                newArticle.appendChild(newTeaser);
                 box2.appendChild(newArticle);
             }); 
         },
     });
 
-    //console.log(document.getElementsByTagName('input')[0])
+    /* search articles after keywords in title, category & teaser */
     $("input[type='text']").on('keypress keyup', function () {
         let value = $(this).val().toLowerCase();
-        //console.log(value)
-        //$('.container__box2 *')
-        //console.log(document.getElementsByClassName("box2"))
-        //console.log($('.container1 div.box2'))
-        $(".box2 *").filter(function(){
-            console.log($(this))
-            $(this).toogle($(this).text().toLowerCase().indexOf(value) > -1)
-            
+
+        $("article").filter(function(){
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
-        /*$('.container__box2 p').filter(function(){
-            $(this).toogle($(this).text().toLowerCase().indexOf(value) > -1)
-        });*/
+        
     });
 });

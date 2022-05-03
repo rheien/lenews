@@ -85,3 +85,8 @@
         max-width: 400px;
     }
 }
+
+.line_break::after{
+    content: "\A";
+    white-space: pre-line;
+}
