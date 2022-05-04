@@ -8,7 +8,7 @@ $(document).ready(function(){
             console.log("XML Datei nicht abrufbar", err);
         },
         success : function(data){
-            let articles = [];
+            const articles = [];
 
             /* XML parsing */ 
             $(data).find("item").each(function(){
@@ -115,5 +115,4 @@ $(document).ready(function(){
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-    
 });
