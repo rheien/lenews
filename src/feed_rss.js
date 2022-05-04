@@ -56,12 +56,9 @@ $(document).ready(function(){
 
             let newDate = document.createElement('p');
             newDate.className = 'box1--position-left div__inline-block color--grey';
-            newDate.textContent = first_article.date;
-
-            let lineBreak = document.createElement('span')
-            lineBreak.className= 'line_break';
-            newDate.append(lineBreak);
-            newDate.append(first_article.category);
+            newDate.appendChild(document.createTextNode(first_article.date));
+            newDate.appendChild(document.createElement('br'));
+            newDate.appendChild(document.createTextNode(first_article.category));
             
             newHeading1.appendChild(newLink);
             newArticle.appendChild(newHeading1);
