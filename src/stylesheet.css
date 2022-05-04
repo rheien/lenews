@@ -2,6 +2,11 @@
     display: inline-block;
 }
 
+.header__search{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .color--green{
     color: #66A060;
 }
@@ -17,7 +22,7 @@
     margin: 2px;
 }
 
-.container1{
+.container{
     display:flex;
     flex-flow: row wrap;
     flex-direction: column;
@@ -70,7 +75,7 @@
 
 
 @media all and (max-width: 800px) {
-    .container1{
+    .container{
         flex:2 100%;
         max-width: 600px;
     }
