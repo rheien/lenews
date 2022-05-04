@@ -15,13 +15,6 @@
     color: white;
 }
 
-.q{
-    background-color: white;
-    width: 10px;
-    height: 10px;
-    margin: 2px;
-}
-
 .container{
     display:flex;
     flex-flow: row wrap;
@@ -88,9 +81,4 @@
         order:1;
         max-width: 400px;
     }
-}
-
-.line_break::after{
-    content: "\A";
-    white-space: pre-line;
 }

@@ -71,7 +71,7 @@ $(document).ready(function(){
 
             /* rendering other articles */
             let box2 = document.getElementsByClassName('box2')[0];
-            articles.forEach((element,index ) => {
+            articles.forEach((article,index ) => {
                 if(index==0){return }
 
                 newArticle = document.createElement('article');
@@ -79,21 +79,19 @@ $(document).ready(function(){
 
                 newLink = document.createElement('a');
                 newLink.className = 'color--green';
-                newLink.textContent = element.title;
+                newLink.textContent = article.title;
                 newLink.setAttribute("target","_self");
-                newLink.setAttribute("href",element.link);
+                newLink.setAttribute("href",article.link);
 
                 newDate = document.createElement('p');
                 newDate.className = 'container2__box2__teaser color--grey';
-                newDate.textContent = element.date;
-                lineBreak = document.createElement('span')
-                lineBreak.className= 'line_break';
-                newDate.append(lineBreak);
-                newDate.append(element.category);
+                newDate.appendChild(document.createTextNode(article.date));
+                newDate.appendChild(document.createElement('br'));
+                newDate.appendChild(document.createTextNode(article.category));
 
                 newTeaser = document.createElement('p');
                 newTeaser.className = 'container2__box2__teaser color--grey';
-                newTeaser.innerHTML = element.teaser;
+                newTeaser.innerHTML = article.teaser;
 
                 let newHeading2 = document.createElement('h2');
 
@@ -107,7 +105,7 @@ $(document).ready(function(){
     });
 
     /* search articles after keywords in title, category & teaser */
-    $("input[type='text']").on('keypress keyup', function () {
+    $("input[type='text']").on('keyup', function () {
         let value = $(this).val().toLowerCase();
 
         $("article").filter(function(){
