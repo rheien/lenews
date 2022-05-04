@@ -41,7 +41,9 @@ $(document).ready(function(){
             let box1 = document.getElementsByClassName('box1')[0];
             let newArticle = document.createElement('article');
             
+
             let newHeading1 = document.createElement('h1');
+
             newHeading1.className = 'box1--position-left';
 
             let newLink = document.createElement('a');
