@@ -71,11 +71,7 @@
         flex:2 100%;
         max-width: 600px;
     }
-    .container2{
-        flex: 100%;
-        order:2;
-        max-width: 600px;
-    }
+
     .box1{
         flex: 100%;
         order:1;

@@ -36,80 +36,91 @@ $(document).ready(function(){
                 return 0 
             }).reverse();
 
-            /* rendering first article */
-            let first_article = articles[0];
-            let box1 = document.getElementsByClassName('box1')[0];
-            let newArticle = document.createElement('article');
-            
-            let newHeading1 = document.createElement('h1');
-            newHeading1.className = 'box1--position-left';
+            /* filter the search by title, teaser & category */
+            let search_result = [];
+            $("#searchArticle").on('keyup', function () {
+                let value = $(this).val().toLowerCase();
+                
+                search_result = articles.filter(function(article){
+                    if (article.title.toLowerCase().indexOf(value) > -1){return true}
+                    else if (article.teaser.toLowerCase().indexOf(value) > -1){return true}
+                    else if (article.category.toLowerCase().indexOf(value) > -1){return true}
+                    else {return}
+                });
+                $('.box1').children().remove();
+                $('.box2').children().remove();
+                renderingArticle(search_result);
+            });
 
-            let newLink = document.createElement('a');
-            newLink.className = 'color--green';
-            newLink.textContent = first_article.title;
-            newLink.setAttribute("target","_self");
-            newLink.setAttribute("href",first_article.link);
-
-            let newTeaser = document.createElement('p');
-            newTeaser.className = 'box1--position-right  div__inline-block color--grey';
-            newTeaser.textContent = first_article.teaser;
-
-            let newDate = document.createElement('p');
-            newDate.className = 'box1--position-left div__inline-block color--grey';
-            newDate.appendChild(document.createTextNode(first_article.date));
-            newDate.appendChild(document.createElement('br'));
-            newDate.appendChild(document.createTextNode(first_article.category));
-            
-            newHeading1.appendChild(newLink);
-            newArticle.appendChild(newHeading1);
-            newArticle.appendChild(newDate);
-            newArticle.appendChild(newTeaser);
-            box1.appendChild(newArticle);
-
-            /* rendering other articles */
-            let box2 = document.getElementsByClassName('box2')[0];
-            articles.forEach((article,index ) => {
-                if(index==0){return }
-
-                newArticle = document.createElement('article');
-                newArticle.className = 'container2__box2';
-
-                newLink = document.createElement('a');
-                newLink.className = 'color--green';
-                newLink.textContent = article.title;
-                newLink.setAttribute("target","_self");
-                newLink.setAttribute("href",article.link);
-
-                newDate = document.createElement('p');
-                newDate.className = 'container2__box2__teaser color--grey';
-                newDate.appendChild(document.createTextNode(article.date));
-                newDate.appendChild(document.createElement('br'));
-                newDate.appendChild(document.createTextNode(article.category));
-
-                newTeaser = document.createElement('p');
-                newTeaser.className = 'container2__box2__teaser color--grey';
-                newTeaser.innerHTML = article.teaser;
-
-                let newHeading2 = document.createElement('h2');
-
-                newHeading2.appendChild(newLink);
-                newArticle.appendChild(newHeading2);
-                newArticle.appendChild(newDate);
-                newArticle.appendChild(newTeaser);
-                box2.appendChild(newArticle);
-            }); 
+            /* rendering the page */
+            renderingArticle(articles);
         },
     });
 
-    /* search articles after keywords in title, category & teaser */
-    $("input[type='text']").on('keyup', function () {
-        let value = $(this).val().toLowerCase();
+    function renderingArticle(articles) {
 
-        $("article").filter(function(){
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-        $(".box1").filter(function(){
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
+        /* rendering first article */
+        let first_article = articles[0];
+        let box1 = document.getElementsByClassName('box1')[0];
+        let newArticle = document.createElement('article');
+        
+        let newHeading1 = document.createElement('h1');
+        newHeading1.className = 'box1--position-left';
+
+        let newLink = document.createElement('a');
+        newLink.className = 'color--green';
+        newLink.textContent = first_article.title;
+        newLink.setAttribute("target","_self");
+        newLink.setAttribute("href",first_article.link);
+
+        let newTeaser = document.createElement('p');
+        newTeaser.className = 'box1--position-right  div__inline-block color--grey';
+        newTeaser.textContent = first_article.teaser;
+
+        let newDate = document.createElement('p');
+        newDate.className = 'box1--position-left div__inline-block color--grey';
+        newDate.appendChild(document.createTextNode(first_article.date));
+        newDate.appendChild(document.createElement('br'));
+        newDate.appendChild(document.createTextNode(first_article.category));
+        
+        newHeading1.appendChild(newLink);
+        newArticle.appendChild(newHeading1);
+        newArticle.appendChild(newDate);
+        newArticle.appendChild(newTeaser);
+        box1.appendChild(newArticle);
+
+        /* rendering other articles */
+        let box2 = document.getElementsByClassName('box2')[0];
+        articles.forEach((article,index ) => {
+            if(index==0){return }
+
+            newArticle = document.createElement('article');
+            newArticle.className = 'container2__box2';
+
+            newLink = document.createElement('a');
+            newLink.className = 'color--green';
+            newLink.textContent = article.title;
+            newLink.setAttribute("target","_self");
+            newLink.setAttribute("href",article.link);
+
+            newDate = document.createElement('p');
+            newDate.className = 'container2__box2__teaser color--grey';
+            newDate.appendChild(document.createTextNode(article.date));
+            newDate.appendChild(document.createElement('br'));
+            newDate.appendChild(document.createTextNode(article.category));
+
+            newTeaser = document.createElement('p');
+            newTeaser.className = 'container2__box2__teaser color--grey';
+            newTeaser.innerHTML = article.teaser;
+
+            let newHeading2 = document.createElement('h2');
+
+            newHeading2.appendChild(newLink);
+            newArticle.appendChild(newHeading2);
+            newArticle.appendChild(newDate);
+            newArticle.appendChild(newTeaser);
+            box2.appendChild(newArticle);
+        });       
+    }
+    
 });
